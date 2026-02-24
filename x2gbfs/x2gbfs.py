@@ -13,6 +13,7 @@ from requests.exceptions import HTTPError
 
 from x2gbfs.gbfs import BaseProvider, GbfsTransformer, GbfsV2Writer, GbfsV3Writer
 from x2gbfs.providers import (
+    CambioGroupProvider,
     CambioProvider,
     CantamenIXSIProvider,
     Deer,
@@ -64,6 +65,8 @@ def build_extractor(provider: str, feed_config: Dict[str, Any]) -> BaseProvider:
 
         fleetsterApi = FleetsterAPI(api_url, api_user, api_password)
         return MikarProvider(feed_config, fleetsterApi)
+    if provider.startswith('cambio_group_'):
+        return CambioGroupProvider(feed_config)
     if provider.startswith('cambio_'):
         return CambioProvider(feed_config)
     if (
