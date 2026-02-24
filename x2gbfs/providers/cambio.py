@@ -16,21 +16,22 @@ class CambioProvider(BaseProvider):
 
     DEFAULT_MAX_RANGE_ELECTRIC = 200000
     DEFAULT_MAX_RANGE_COMBUSTION = 600000
-    STATIONS_URL = 'https://cwapi.cambio-carsharing.com/opendata/v1/mandator/{city_id}/stations'
-    VEHICLE_TYPES_URL = 'https://cwapi.cambio-carsharing.com/opendata/v1/mandator/{city_id}/vehicles'
+    STATIONS_URL = "https://cwapi.cambio-carsharing.com/opendata/v1/{category}/{city_id}/stations"
+    VEHICLE_TYPES_URL = "https://cwapi.cambio-carsharing.com/opendata/v1/{category}/{city_id}/vehicles"
 
     def __init__(self, feed_config: dict[str, Any]):
-        self.city_id = feed_config['provider-info']['city_id']
+        self.city_id = feed_config["provider-info"]["city_id"]
+        self.category = "mandatorGroup" if feed_config["provider-info"].get("is_group", False) else "mandator"
         self.config = feed_config
 
     def _all_stations(self) -> list[dict[str, Any]]:
-        response = get(self.STATIONS_URL.format(city_id=self.city_id))
+        response = get(self.STATIONS_URL.format(city_id=self.city_id, category=self.category))
         response.raise_for_status()
         ret: list[dict[str, Any]] = response.json()
         return ret
 
     def _all_vehicle_types(self) -> list[dict[str, Any]]:
-        response = get(self.VEHICLE_TYPES_URL.format(city_id=self.city_id))
+        response = get(self.VEHICLE_TYPES_URL.format(city_id=self.city_id, category=self.category))
         response.raise_for_status()
         ret: list[dict[str, Any]] = response.json()
         return ret
