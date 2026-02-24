@@ -16,13 +16,13 @@ class CambioProvider(BaseProvider):
 
     DEFAULT_MAX_RANGE_ELECTRIC = 200000
     DEFAULT_MAX_RANGE_COMBUSTION = 600000
-    STATIONS_URL = "https://cwapi.cambio-carsharing.com/opendata/v1/{category}/{mandator_id}/stations"
-    VEHICLE_TYPES_URL = "https://cwapi.cambio-carsharing.com/opendata/v1/{category}/{mandator_id}/vehicles"
+    STATIONS_URL = 'https://cwapi.cambio-carsharing.com/opendata/v1/{category}/{mandator_id}/stations'
+    VEHICLE_TYPES_URL = 'https://cwapi.cambio-carsharing.com/opendata/v1/{category}/{mandator_id}/vehicles'
 
     def __init__(self, feed_config: dict[str, Any]):
-        provider_info = feed_config["provider-info"]
-        self.mandator_id = provider_info["mandator_id"] if "mandator_id" in provider_info else provider_info["city_id"]
-        self.category = "mandatorGroup" if provider_info.get("is_group", False) else "mandator"
+        provider_info = feed_config['provider-info']
+        self.mandator_id = provider_info['mandator_id'] if 'mandator_id' in provider_info else provider_info['city_id']
+        self.category = 'mandatorGroup' if provider_info.get('is_group', False) else 'mandator'
         self.config = feed_config
 
     def _all_stations(self) -> list[dict[str, Any]]:
