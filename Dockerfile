@@ -13,6 +13,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY x2gbfs/ ./x2gbfs/
-COPY config/ ./config/
+COPY --chmod=755 run_all.sh ./run_all.sh
+COPY config_mobidrom/ ./config/
 
-ENTRYPOINT [ "python", "-m", "x2gbfs.x2gbfs" ]
+ENTRYPOINT [ "./run_all.sh" ]
