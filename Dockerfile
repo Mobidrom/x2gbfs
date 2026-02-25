@@ -7,6 +7,8 @@ LABEL org.opencontainers.image.documentation="https://github.com/mobidata-bw/x2g
 LABEL org.opencontainers.image.source="https://github.com/mobidata-bw/x2gbfs"
 LABEL org.opencontainers.image.licenses="(EUPL-1.2)"
 
+RUN apk add rclone
+
 WORKDIR /app
 
 COPY requirements.txt ./
