@@ -1,0 +1,17 @@
+{
+    "feed_data": {
+        "system_information": {
+            "language": "de",
+            "name": "Cambio Rheinland",
+            "system_id": "cambio_rheinland",
+            "timezone": "Europe/Berlin"
+        }
+    },
+    "provider-info": {
+        "city_id": "DOR"
+    },
+    "x2gbfs": {
+        "ttl": 86400,
+        "gbfs_version": 2
+    }
+}

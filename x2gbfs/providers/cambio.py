@@ -49,7 +49,9 @@ class CambioProvider(BaseProvider):
         gbfs_station_status_map: dict[str, dict[str, Any]] = {}
 
         for elem in result:
-            geo_position = elem['geoposition']
+            geo_position = elem.get('geoposition')
+            if not geo_position: # not all elem have the key geoposition
+                continue
             station_id = elem['id']
             address = elem['address']
             vehicle_types_available = self._extract_vehicle_types_available(elem)
