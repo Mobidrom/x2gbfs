@@ -2,8 +2,8 @@
     "feed_data": {
         "system_information": {
             "language": "de",
-            "name": "Cambio Rheinland",
-            "system_id": "cambio_rheinland",
+            "name": "Cambio Wuppertal",
+            "system_id": "cambio_wuppertal",
             "timezone": "Europe/Berlin"
         }
     },

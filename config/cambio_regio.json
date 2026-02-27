@@ -2,8 +2,8 @@
     "feed_data": {
         "system_information": {
             "language": "de",
-            "name": "Cambio Rheinland",
-            "system_id": "cambio_rheinland",
+            "name": "Cambio Regio",
+            "system_id": "cambio_regio",
             "timezone": "Europe/Berlin"
         }
     },
