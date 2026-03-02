@@ -40,10 +40,7 @@ for feed in "$@"; do
 done
 
 echo "Creating GBFS feeds ..."
-for feed in "$@"; do
-	echo "Processing '${feed}' ..."
-	python -m x2gbfs.x2gbfs -b "${SERVER_URL}" -p "${feed}"
-done
+python -m x2gbfs.x2gbfs -b "${SERVER_URL}" -p "${*// /,}"
 echo "All feeds created"
 
 ## TODO Sync data
