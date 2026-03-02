@@ -4,12 +4,19 @@
 #
 # Usage:
 #
-# Set environment variables: SERVER_URL
+# Set environment variables: SERVER_URL TARGET_PATH
+# Also set all environment variable to run Rclone (see below)
+#
 # Pass all configuration file names to process
+# Example: cambio_aachen cambio_bielefeld cambio_dortmund
 #
 
 if [ -z "${SERVER_URL}" ]; then
 	echo "ERROR: SERVER_URL is not set. Aborting." >&2
+	exit 2
+fi
+if [ -z "${TARGET_PATH}" ]; then
+	echo "ERROR: TARGET_PATH is not set. Aborting." >&2
 	exit 2
 fi
 # Variables for Rclone
@@ -45,5 +52,5 @@ echo "All feeds created"
 
 ## TODO Sync data
 echo "Syncing data ..."
-rclone sync --fast-list --progress 'out' 'TODO'
+rclone sync --fast-list --progress 'out' "${TARGET_PATH}"
 
