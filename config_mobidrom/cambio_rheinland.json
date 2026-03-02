@@ -8,7 +8,10 @@
         }
     },
     "provider-info": {
-        "city_id": "KOE"
+        "city_id": "KOE",
+        "skipped_ids": [
+            "12-4375"
+        ]
     },
     "x2gbfs": {
         "ttl": 86400,
