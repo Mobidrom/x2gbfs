@@ -21,6 +21,7 @@ class CambioProvider(BaseProvider):
 
     def __init__(self, feed_config: dict[str, Any]):
         self.city_id = feed_config['provider-info']['city_id']
+        self.skipped = feed_config['provider-info'].get('skipped_ids', [])
         self.config = feed_config
 
     def _all_stations(self) -> list[dict[str, Any]]:
@@ -49,6 +50,8 @@ class CambioProvider(BaseProvider):
         gbfs_station_status_map: dict[str, dict[str, Any]] = {}
 
         for elem in result:
+            if elem['id'] in self.skipped:
+                continue
             geo_position = elem['geoposition']
             station_id = elem['id']
             address = elem['address']
