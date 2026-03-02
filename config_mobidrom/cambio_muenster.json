@@ -1,0 +1,20 @@
+{
+    "feed_data": {
+        "system_information": {
+            "language": "de",
+            "name": "Cambio Muenster",
+            "system_id": "cambio_muenster",
+            "timezone": "Europe/Berlin"
+        }
+    },
+    "provider-info": {
+        "city_id": "MST",
+        "skipped_ids": [
+            "24-5336"
+        ]
+    },
+    "x2gbfs": {
+        "ttl": 86400,
+        "gbfs_version": 2
+    }
+}

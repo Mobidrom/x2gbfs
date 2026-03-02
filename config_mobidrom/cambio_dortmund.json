@@ -1,0 +1,17 @@
+{
+    "feed_data": {
+        "system_information": {
+            "language": "de",
+            "name": "Cambio Dortmund",
+            "system_id": "cambio_dortmund",
+            "timezone": "Europe/Berlin"
+        }
+    },
+    "provider-info": {
+        "city_id": "DOR"
+    },
+    "x2gbfs": {
+        "ttl": 86400,
+        "gbfs_version": 2
+    }
+}

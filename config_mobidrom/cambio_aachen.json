@@ -1,0 +1,17 @@
+{
+    "feed_data": {
+        "system_information": {
+            "language": "de",
+            "name": "Cambio Aachen",
+            "system_id": "cambio_aachen",
+            "timezone": "Europe/Berlin"
+        }
+    },
+    "provider-info": {
+        "city_id": "AAC"
+    },
+    "x2gbfs": {
+        "ttl": 86400,
+        "gbfs_version": 2
+    }
+}

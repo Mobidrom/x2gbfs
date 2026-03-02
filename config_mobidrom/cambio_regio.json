@@ -1,0 +1,17 @@
+{
+    "feed_data": {
+        "system_information": {
+            "language": "de",
+            "name": "Cambio Regio",
+            "system_id": "cambio_regio",
+            "timezone": "Europe/Berlin"
+        }
+    },
+    "provider-info": {
+        "city_id": "SCR"
+    },
+    "x2gbfs": {
+        "ttl": 86400,
+        "gbfs_version": 2
+    }
+}
