@@ -1,0 +1,40 @@
+
+# -- SEE mobidp-devops/helmcharts/mobidp-base-importer-chart/README.md FOR A LIST OF ALL AVAILABLE VALUES
+# -- NOTE: Additional values MUST be added under the 'mobidp-base-importer-chart' key!
+
+mobidp-base-importer-chart:
+
+  importer:
+    enabled: true # DO NOT CHANGE THIS VALUE
+    name: "x2gbfs-cambio-importer"
+    metadata:
+      source: "cambio"
+      destination: "kstore"
+      frequency: "every-sunday"
+    schedule: "0 0 * * 0"
+    steps:
+      extract: []
+      transform:
+        - name: "x2gbfs-cambio-transformer"
+          config:
+            - name: "SERVER_URL"
+              value: "https://mobidrom-release.s3.eu-central-3.ionoscloud.com/x2gbfs-cambio"
+            - name: "SOURCE_PATH"
+              value: "out"
+            - name: "TARGET_PATH"
+              value: "s3:mobidrom-release/x2gbfs-cambio"
+            - name: "RCLONE_CONFIG_S3_ENDPOINT"
+              value: "s3.eu-central-3.ionoscloud.com"
+            - name: "RCLONE_CONFIG_S3_PROVIDER"
+              value: "IONOS"
+            - name: "RCLONE_CONFIG_S3_REGION"
+              value: "de"
+            - name: "RCLONE_CONFIG_S3_TYPE"
+              value: "s3"
+            - name: "RCLONE_CONFIG_S3_ACL"
+              value: "private"
+          secrets:
+            - name: "AWS_ACCESS_KEY_ID"
+              secretKeyRef: "ionos/s3-aws-access-key-id"
+            - name: "AWS_SECRET_ACCESS_KEY"
+              secretKeyRef: "ionos/s3-aws-secret-access-key"

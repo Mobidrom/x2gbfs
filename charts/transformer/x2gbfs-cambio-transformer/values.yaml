@@ -1,0 +1,39 @@
+
+# -- SEE helm/transformer/template-transformer FOR A LIST OF ALL AVAILABLE VALUES
+# -- NOTE: Additional values MUST be added under the 'mobidp-base-importer-chart' key!
+
+
+mobidp-base-importer-chart:
+  global:
+    serviceAccountName: "wrkflw-run-tls-pods-sa"
+    imagePullSecrets:
+      - name: "mobidrom-registry"
+      - name: "ionos-ops-registry-secret"
+  importerStep:
+    name: "x2gbfs-cambio-transformer"
+    transformer:
+      enabled: true
+    image:
+      registry: "ghrc.io"
+      repository: "mobidrom/x2gbfs"
+      name: ""
+      tag: "0.1.0"
+    allowTrafficTo: []
+    certMountPath: ""
+    secretFilePath: ""
+    labels: {}
+    command: ["sh", "-c"]
+    args: ["./run_all.sh cambio_aachen cambio_bielefeld"]
+    resources:
+      limits:
+        cpu: 1
+        memory: 1Gi
+      requests:
+        cpu: 200m
+        memory: 512Mi
+    ttlStrategy:
+      secondsAfterSuccess: 604800
+      secondsAfterFailure: 604800
+    volumes:
+      extraVolumes: []
+      extraVolumeMounts: []

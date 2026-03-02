@@ -1,0 +1,15 @@
+# x2gbfs/charts/transformer/carsharing-cambio-transformer/Chart.yaml
+apiVersion: v2
+name: x2gbfs-cambio-transformer
+description: Helm chart for fetching cambio carsharing data as gbfs
+version: 0.1.0 # Increase version according to semantic versioning
+dependencies:
+  - name: mobidp-base-importer-chart # DO NOT CHANGE THIS VALUE!
+    version: "0.3.4" # DO NOT CHANGE THIS VALUE!
+    repository: "oci://ghcr.io/mobidrom/mobidp-devops" # DO NOT CHANGE THIS VALUE!
+maintainers:
+  - name: John Funk
+    email: john.funk@mobidrom.nrw
+appVersion: 0.1.0
+annotations:
+  "org.opencontainers.image.source": "https://github.com/mobidrom/x2gbfs"

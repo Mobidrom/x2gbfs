@@ -7,12 +7,15 @@ LABEL org.opencontainers.image.documentation="https://github.com/mobidata-bw/x2g
 LABEL org.opencontainers.image.source="https://github.com/mobidata-bw/x2gbfs"
 LABEL org.opencontainers.image.licenses="(EUPL-1.2)"
 
+RUN apk add rclone
+
 WORKDIR /app
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY x2gbfs/ ./x2gbfs/
-COPY config/ ./config/
+COPY --chmod=755 run_all.sh ./run_all.sh
+COPY config_mobidrom/ ./config/
 
-ENTRYPOINT [ "python", "-m", "x2gbfs.x2gbfs" ]
+ENTRYPOINT [ "./run_all.sh" ]
