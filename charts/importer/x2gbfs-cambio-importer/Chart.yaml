@@ -1,0 +1,17 @@
+
+# x2gbfs/charts/importer/importer-template/Chart.yaml
+apiVersion: v2
+name: x2gbfs-cambio-importer # Use the directory name of the entity
+description: Importer for cambio GBFS data
+version: 1.0.0
+dependencies:
+  - name: mobidp-base-importer-chart # DO NOT CHANGE THIS VALUE!
+    version: "0.3.4" # DO NOT CHANGE THIS VALUE!
+    repository: "oci://ghcr.io/mobidrom/mobidp-devops" # DO NOT CHANGE THIS VALUE!
+
+maintainers:
+  - name: John Funk # Replace
+    email: john.funk@mobidrom.nrw # Replace
+
+annotations:
+  "org.opencontainers.image.source": "https://github.com/mobidrom/x2gbfs"
