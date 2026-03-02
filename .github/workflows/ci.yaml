@@ -16,7 +16,7 @@ permissions:
 jobs:
   application-ci-cd:
     name: Build, Package, Write-Back and Push Updates
-    uses: mobidrom/github-actions/.github/workflows/ci.yaml@main
+    uses: Mobidrom/github-actions/.github/workflows/ci.yaml@main
     secrets: inherit
     with:
       source-repository: "x2gbfs"
