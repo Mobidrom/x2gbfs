@@ -3,8 +3,8 @@ FROM python:3.13.5-alpine@sha256:37b14db89f587f9eaa890e4a442a3fe55db452b69cca140
 LABEL org.opencontainers.image.title="x2gbfs"
 LABEL org.opencontainers.image.description="Library & command line to generate GBFS feeds from various sharing providers."
 LABEL org.opencontainers.image.authors="Holger Bruch <holger.bruch@systect.de>, MobiData BW IPL contributors <mobidata-bw@nvbw.de>"
-LABEL org.opencontainers.image.documentation="https://github.com/mobidata-bw/x2gbfs"
-LABEL org.opencontainers.image.source="https://github.com/mobidata-bw/x2gbfs"
+LABEL org.opencontainers.image.documentation="https://github.com/mobidrom/x2gbfs"
+LABEL org.opencontainers.image.source="https://github.com/mobidrom/x2gbfs"
 LABEL org.opencontainers.image.licenses="(EUPL-1.2)"
 
 RUN apk add rclone

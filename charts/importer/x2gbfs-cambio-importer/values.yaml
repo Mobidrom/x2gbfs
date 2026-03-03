@@ -33,6 +33,8 @@ mobidp-base-importer-chart:
               value: "s3"
             - name: "RCLONE_CONFIG_S3_ACL"
               value: "private"
+            - name: "RCLONE_CONFIG_S3_ENV_AUTH"
+              value: "private"
           secrets:
             - name: "AWS_ACCESS_KEY_ID"
               secretKeyRef: "ionos/s3-aws-access-key-id"
