@@ -1,0 +1,6 @@
+dependencies:
+- name: mobidp-base-importer-chart
+  repository: oci://ghcr.io/mobidrom/mobidp-devops
+  version: 0.3.4
+digest: sha256:3b6eae91b5f36ceeb42c720919e2d9ed568010d60c45e0f709fd8be705ac972c
+generated: "2026-03-02T15:24:46.710567121+01:00"
