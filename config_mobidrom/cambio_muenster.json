@@ -9,6 +9,7 @@
     },
     "provider-info": {
         "city_id": "MST",
+        "partner": "stadtteilauto",
         "skipped_ids": [
             "24-5336"
         ]
