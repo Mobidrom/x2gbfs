@@ -8,7 +8,8 @@
         }
     },
     "provider-info": {
-        "city_id": "SCR"
+        "city_id": "SCR",
+        "partner": "stadtteilauto"
     },
     "x2gbfs": {
         "ttl": 86400,
