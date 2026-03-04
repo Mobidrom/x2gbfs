@@ -14,7 +14,7 @@ mobidp-base-importer-chart:
       registry: "ghrc.io"
       repository: "mobidrom/x2gbfs"
       name: "cambio-transformer"
-      tag: "0.1.2"
+      tag: "0.1.3"
     allowTrafficTo:
       - "external"
     command: ["sh", "-c"]
