@@ -1,8 +1,5 @@
-
 # -- SEE helm/transformer/template-transformer FOR A LIST OF ALL AVAILABLE VALUES
 # -- NOTE: Additional values MUST be added under the 'mobidp-base-importer-chart' key!
-
-
 mobidp-base-importer-chart:
   global:
     serviceAccountName: "wrkflw-run-tls-pods-sa"
@@ -16,14 +13,12 @@ mobidp-base-importer-chart:
     image:
       registry: "ghrc.io"
       repository: "mobidrom/x2gbfs"
-      name: ""
-      tag: "0.1.0"
-    allowTrafficTo: []
-    certMountPath: ""
-    secretFilePath: ""
-    labels: {}
+      name: "cambio-transformer"
+      tag: "0.1.2"
+    allowTrafficTo:
+      - "external"
     command: ["sh", "-c"]
-    args: ["./run_all.sh cambio_aachen cambio_bielefeld"]
+    args: ["./run_all.sh cambio_aachen cambio_bielefeld cambio_dortmund cambio_muenster cambio_regio cambio_rheinland cambio_wuppertal"]
     resources:
       limits:
         cpu: 1
@@ -35,5 +30,10 @@ mobidp-base-importer-chart:
       secondsAfterSuccess: 604800
       secondsAfterFailure: 604800
     volumes:
-      extraVolumes: []
-      extraVolumeMounts: []
+      extraVolumes:
+        - name: out
+          emptyDir: {}
+          sizeLimit: 100Mi
+      extraVolumeMounts:
+        - mountPath: /app/out
+          name: out
