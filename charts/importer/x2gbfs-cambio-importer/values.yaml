@@ -3,26 +3,30 @@
 # -- NOTE: Additional values MUST be added under the 'mobidp-base-importer-chart' key!
 
 mobidp-base-importer-chart:
-
   importer:
     enabled: true # DO NOT CHANGE THIS VALUE
     name: "x2gbfs-cambio-importer"
+    globalEnvs:
+      config:
+        - name: SERVER_URL
+          value: "https://mobidrom-release.s3.eu-central-3.ionoscloud.com/x2gbfs-cambio"
+        - name: "SOURCE_PATH"
+          value: "out"
+        - name: TARGET_PATH
+          value: "s3:mobidrom-release/x2gbfs-cambio"
+        - name: GBFS_CONFIGS
+          value: "cambio_aachen cambio_bielefeld cambio_dortmund cambio_muenster cambio_regio cambio_rheinland cambio_wuppertal"
     metadata:
       source: "cambio"
-      destination: "kstore"
+      destination: "s3"
       frequency: "every-sunday"
     schedule: "0 0 * * 0"
     steps:
-      extract: []
-      transform:
-        - name: "x2gbfs-cambio-transformer"
+      extract:
+        - name: "x2gbfs-cambio-extractor"
+          image:
+            name: "x2gbfs-extractor"
           config:
-            - name: "SERVER_URL"
-              value: "https://mobidrom-release.s3.eu-central-3.ionoscloud.com/x2gbfs-cambio"
-            - name: "SOURCE_PATH"
-              value: "out"
-            - name: "TARGET_PATH"
-              value: "s3:mobidrom-release/x2gbfs-cambio"
             - name: "RCLONE_CONFIG_S3_ENDPOINT"
               value: "s3.eu-central-3.ionoscloud.com"
             - name: "RCLONE_CONFIG_S3_PROVIDER"
@@ -34,9 +38,11 @@ mobidp-base-importer-chart:
             - name: "RCLONE_CONFIG_S3_ACL"
               value: "private"
             - name: "RCLONE_CONFIG_S3_ENV_AUTH"
-              value: "private"
+              value: "true"
           secrets:
             - name: "AWS_ACCESS_KEY_ID"
               secretKeyRef: "ionos/s3-aws-access-key-id"
             - name: "AWS_SECRET_ACCESS_KEY"
               secretKeyRef: "ionos/s3-aws-secret-access-key"
+      transform: []
+      load: []

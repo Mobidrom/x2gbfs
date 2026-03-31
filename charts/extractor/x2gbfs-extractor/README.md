@@ -1,14 +1,14 @@
-# transformer-template
+# x2gbfs-cambio-extractor
 
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square)
 
-Helm chart for the transformation of cambio carsharing data
+Helm chart for the extraction of cambio carsharing data as GBFS
 
 ## Maintainers
 
-| Name                      | Email                            | Url |
-|---------------------------|----------------------------------|-----|
-| Arthurlio Donkeng nguetsa | <arthurlio.nguetsa@mobidrom.nrw> | --  |
+| Name      | Email                    | Url |
+|-----------|--------------------------|-----|
+| John Funk | <john.funk@mobidrom.nrw> | --  |
 
 ## Requirements
 

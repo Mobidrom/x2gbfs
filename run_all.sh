@@ -34,8 +34,6 @@ if [ -n "${missing}" ]; then
 	exit 2
 fi
 
-## TODO Check settings required for sync
-
 if [ "$#" -eq 0 ]; then
 	echo "ERROR: No configuration provided. Aborting." >&2
 	exit 1
@@ -53,7 +51,5 @@ echo "Creating GBFS feeds ..."
 python -m x2gbfs.x2gbfs -b "${SERVER_URL}" -p "${*// /,}"
 echo "All feeds created"
 
-## TODO Sync data
 echo "Syncing data ..."
 rclone sync --fast-list --progress 'out' "${TARGET_PATH}"
-

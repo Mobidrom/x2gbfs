@@ -1,7 +1,7 @@
-# x2gbfs/charts/transformer/carsharing-cambio-transformer/Chart.yaml
+# x2gbfs/charts/extractor/carsharing-cambio-extractor/Chart.yaml
 apiVersion: v2
-name: x2gbfs-cambio-transformer
-description: Helm chart for fetching cambio carsharing data as gbfs
+name: x2gbfs-extractor
+description: Helm chart for fetching gbfs data using x2gbfs
 version: 0.1.0 # Increase version according to semantic versioning
 dependencies:
   - name: mobidp-base-importer-chart # DO NOT CHANGE THIS VALUE!

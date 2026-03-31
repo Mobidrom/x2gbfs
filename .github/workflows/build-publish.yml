@@ -1,38 +1,43 @@
-name: build & publish Docker image
+name: Mobidrom X2GBFS CI
 
 on:
   push:
     branches:
-      - main
+      - "main"
+  pull_request:
+    types: [opened, reopened, synchronize]
+permissions:
+  contents: write
+  packages: write
+  issues: write
+  pull-requests: write
 
 jobs:
-  lint-and-test:
-    name: lint and test
-    uses: './.github/workflows/lint-and-test.yml'
-
-  build-publish:
-    needs: [lint-and-test]
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout
-      uses: actions/checkout@v6
-
-    - name: set up Docker buildx
-      uses: docker/setup-buildx-action@v3
-
-    - name: log into the GitHub Container Registry
-      uses: docker/login-action@v3
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ github.token }}
-
-    - name: build and push Docker image
-      uses: docker/build-push-action@v6
-      with:
-        push: true
-        tags: ghcr.io/mobidrom/x2gbfs/cambio-transformer:0.1.0
-        platforms: linux/amd64,linux/arm64
-        # https://docs.docker.com/build/ci/github-actions/cache/#cache-backend-api
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+  application-ci-cd:
+    name: Build, Package, Write-Back and Push Updates
+    uses: mobidrom/github-actions/.github/workflows/ci.yaml@main
+    secrets: inherit
+    with:
+      source-repository: "x2gbfs"
+      tech-stack: "container"
+      image-app-name: "x2gbfs-extractor"
+      image-app-dir: "."
+      image-files: |
+        config/**
+        config_mobidrom/**
+        tests/**
+        x2gbfs/**
+        Dockerfile
+        Makefile
+        pyproject.toml
+        requirements.txt
+        run_all.sh
+      image-parent-directories: "."
+      chart-app-name: "dynamic-details"
+      chart-files: charts/**
+      write-back-image-fields: |
+        {  "name": ".mobidp-base-importer-chart.importerStep.image.tag", "path": "charts/PATH/values.yaml" },
+        {  "name": ".appVersion", "path": "charts/PATH/Chart.yaml" }
+      write-back-chart-fields: |
+        { "name": ".version", "path": "PATH/Chart.yaml" }
+      config-type: "workflows-helm"

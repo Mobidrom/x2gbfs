@@ -7,18 +7,18 @@ mobidp-base-importer-chart:
       - name: "mobidrom-registry"
       - name: "ionos-ops-registry-secret"
   importerStep:
-    name: "x2gbfs-cambio-transformer"
-    transformer:
+    name: "x2gbfs-extractor"
+    extractor:
       enabled: true
     image:
       registry: "ghrc.io"
       repository: "mobidrom/x2gbfs"
-      name: "cambio-transformer"
-      tag: "0.1.3"
+      name: "x2gbfs-extractor"
+      tag: "0.1.0"
     allowTrafficTo:
       - "external"
-    command: ["sh", "-c"]
-    args: ["./run_all.sh cambio_aachen cambio_bielefeld cambio_dortmund cambio_muenster cambio_regio cambio_rheinland cambio_wuppertal"]
+    command: ["/bin/sh", "-c"]
+    args: ["./run_all.sh", "${GBFS_CONFIGS}"]
     resources:
       limits:
         cpu: 1
