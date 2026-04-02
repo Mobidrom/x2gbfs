@@ -23,9 +23,7 @@ mobidp-base-importer-chart:
     schedule: "0 0 * * 0"
     steps:
       extract:
-        - name: "x2gbfs-cambio-extractor"
-          image:
-            name: "x2gbfs-extractor"
+        - name: "x2gbfs-extractor"
           config:
             - name: "RCLONE_CONFIG_S3_ENDPOINT"
               value: "s3.eu-central-3.ionoscloud.com"

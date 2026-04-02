@@ -2,7 +2,7 @@
 apiVersion: v2
 name: x2gbfs-extractor
 description: Helm chart for fetching gbfs data using x2gbfs
-version: 0.1.0 # Increase version according to semantic versioning
+version: 1.0.0-SNAPSHOT-2604020759
 dependencies:
   - name: mobidp-base-importer-chart # DO NOT CHANGE THIS VALUE!
     version: "0.3.4" # DO NOT CHANGE THIS VALUE!
