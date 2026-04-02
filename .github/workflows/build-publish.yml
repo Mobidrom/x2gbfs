@@ -1,0 +1,38 @@
+name: build & publish Docker image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint-and-test:
+    name: lint and test
+    uses: './.github/workflows/lint-and-test.yml'
+
+  build-publish:
+    needs: [lint-and-test]
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - name: set up Docker buildx
+      uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+
+    - name: log into the GitHub Container Registry
+      uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ github.token }}
+
+    - name: build and push Docker image
+      uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7.0.0
+      with:
+        push: true
+        tags: ghcr.io/mobidrom/x2gbfs/x2gbfs-extractor:0.1.0
+        platforms: linux/amd64,linux/arm64
+        # https://docs.docker.com/build/ci/github-actions/cache/#cache-backend-api
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
