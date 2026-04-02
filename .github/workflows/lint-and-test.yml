@@ -1,12 +1,8 @@
 name: lint & test
 
 on:
-  push:
-    branches:
-      - '*'
   pull_request:
-    branches:
-      - '*'
+    types: [opened, reopened, synchronize]
   # make workflow "callable" by others
   workflow_call:
 
