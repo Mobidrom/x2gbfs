@@ -1,10 +1,19 @@
 {
     "feed_data": {
         "system_information": {
+            "email": "dortmund@cambio-CarSharing.de",
+            "feed_contact_email": "datenplattform@mobidrom.nrw",
+            "phone_number": "+4921169511895",
             "language": "de",
             "name": "Cambio Dortmund",
+            "operator": "cambio Mobilitätsservice GmbH & Co. KG",
+            "privacy_url": "https://www.cambio-carsharing.de/datenschutz",
+            "purchase_url": "https://www.cambio-carsharing.de/anmelden",
             "system_id": "cambio_dortmund",
-            "timezone": "Europe/Berlin"
+            "terms_last_updated": "2023-12-01",
+            "terms_url": "https://www.cambio-carsharing.de/agb",
+            "timezone": "Europe/Berlin",
+            "url": "https://www.cambio-carsharing.de/dortmund"
         }
     },
     "provider-info": {
