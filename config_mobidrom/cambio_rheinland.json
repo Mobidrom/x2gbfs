@@ -12,7 +12,8 @@
             "system_id": "cambio_rheinland",
             "terms_last_updated": "2023-12-01",
             "terms_url": "https://www.cambio-carsharing.de/agb",
-            "timezone": "Europe/Berlin"
+            "timezone": "Europe/Berlin",
+            "url": "https://www.cambio-carsharing.de/"
         }
     },
     "provider-info": {

@@ -12,7 +12,8 @@
             "system_id": "cambio_muenster",
             "terms_last_updated": "2023-07-10",
             "terms_url": "https://www.stadtteilauto.com/agb",
-            "timezone": "Europe/Berlin"
+            "timezone": "Europe/Berlin",
+            "url": "https://www.stadtteilauto.com/"
         }
     },
     "provider-info": {
