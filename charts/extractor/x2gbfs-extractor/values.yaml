@@ -14,11 +14,12 @@ mobidp-base-importer-chart:
       registry: "ghrc.io"
       repository: "mobidrom/x2gbfs"
       name: "x2gbfs-extractor"
-      tag: "0.1.0"
+      tag: "0.1.0-SNAPSHOT-2604211217"
     allowTrafficTo:
       - "external"
     command: ["/bin/sh", "-c"]
-    args: ["./run_all.sh", "${GBFS_CONFIGS}"]
+    # args: ["./run_all.sh", "${GBFS_CONFIGS}"]
+    args: ["sleep", "3600"]
     resources:
       limits:
         cpu: 1
