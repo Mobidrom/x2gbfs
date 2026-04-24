@@ -18,4 +18,4 @@ COPY x2gbfs/ ./x2gbfs/
 COPY --chmod=755 run_all.sh ./run_all.sh
 COPY config_mobidrom/ ./config/
 
-ENTRYPOINT [ "./run_all.sh" ]
+ENTRYPOINT ["./run_all.sh"]

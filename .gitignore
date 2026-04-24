@@ -7,3 +7,7 @@
 /venv
 /.env
 /out/*
+
+/charts/**/charts
+*.tgz
+Chart.lock
