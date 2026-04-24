@@ -23,12 +23,12 @@ fi
 missing=''
 [ -n "${RCLONE_CONFIG_S3_ENDPOINT}" ] || missing="${missing} RCLONE_CONFIG_S3_ENDPOINT"
 [ -n "${RCLONE_CONFIG_S3_PROVIDER}" ] || missing="${missing} RCLONE_CONFIG_S3_PROVIDER"
-[ -n "${RCLONE_CONFIG_S3_REGION}" ] || missing="${missing} RCLONE_CONFIG_S3_REGION"
-[ -n "${RCLONE_CONFIG_S3_TYPE}" ] || missing="${missing} RCLONE_CONFIG_S3_TYPE"
+[ -n "${RCLONE_CONFIG_S3_REGION}" ] 	|| missing="${missing} RCLONE_CONFIG_S3_REGION"
+[ -n "${RCLONE_CONFIG_S3_TYPE}" ] 		|| missing="${missing} RCLONE_CONFIG_S3_TYPE"
 [ -n "${RCLONE_CONFIG_S3_ENV_AUTH}" ] || missing="${missing} RCLONE_CONFIG_S3_ENV_AUTH"
-[ -n "${RCLONE_CONFIG_S3_ACL}" ] || missing="${missing} RCLONE_CONFIG_S3_ACL"
-[ -n "${AWS_ACCESS_KEY_ID}" ] || missing="${missing} AWS_ACCESS_KEY_ID"
-[ -n "${AWS_SECRET_ACCESS_KEY}" ] || missing="${missing} AWS_SECRET_ACCESS_KEY"
+[ -n "${RCLONE_CONFIG_S3_ACL}" ] 			|| missing="${missing} RCLONE_CONFIG_S3_ACL"
+[ -n "${AWS_ACCESS_KEY_ID}" ] 				|| missing="${missing} AWS_ACCESS_KEY_ID"
+[ -n "${AWS_SECRET_ACCESS_KEY}" ] 		|| missing="${missing} AWS_SECRET_ACCESS_KEY"
 if [ -n "${missing}" ]; then
 	echo "ERROR: Missing Rclone configuration variable:${missing}. Aborting." >&2
 	exit 2
