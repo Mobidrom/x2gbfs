@@ -1,8 +1,8 @@
 name: lint & test
 
 on:
-  # make workflow "callable" by others
-  workflow_call:
+  pull_request:
+    types: [opened, reopened, synchronize]
 
 jobs:
   lint-and-test:
