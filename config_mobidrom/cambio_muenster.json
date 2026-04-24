@@ -1,10 +1,19 @@
 {
     "feed_data": {
         "system_information": {
+            "email": "info@stadtteilauto.com",
+            "feed_contact_email": "datenplattform@mobidrom.nrw",
+            "phone_number": "+4921169511895",
             "language": "de",
-            "name": "Cambio Muenster",
+            "name": "Stadtteilauto CarSharing Münster",
+            "operator": "Stadtteilauto CarSharing Münster GmbH",
+            "privacy_url": "https://www.stadtteilauto.com/datenschutz",
+            "purchase_url": "https://www.stadtteilauto.com/anmeldung-tarife",
             "system_id": "cambio_muenster",
-            "timezone": "Europe/Berlin"
+            "terms_last_updated": "2023-07-10",
+            "terms_url": "https://www.stadtteilauto.com/agb",
+            "timezone": "Europe/Berlin",
+            "url": "https://www.stadtteilauto.com/"
         }
     },
     "provider-info": {
