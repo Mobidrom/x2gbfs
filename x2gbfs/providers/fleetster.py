@@ -164,7 +164,6 @@ class FleetsterProvider(BaseProvider):
         self.api = api
         self.stationIdCache: set[str] = set()
         self.system_id = feed_config['feed_data']['system_information']['system_id']
-        self.pricing_plans = self.load_pricing_plans()
 
     def all_stations(self) -> Generator[Dict, None, None]:
         """
@@ -255,14 +254,10 @@ class FleetsterProvider(BaseProvider):
             pricing_plan['plan_id'] for pricing_plan in self.load_pricing_plans() if category in pricing_plan['plan_id']
         ]
 
-    def _default_pricing_plan_id(self, vehicle: dict) -> str | None:
+    def _default_pricing_plan_id(self, vehicle: dict) -> str:
         """
         Maps fleetster's vehicle categories to pricing plans (provided via config).
         """
-        # TODO: Temporary workaround until dynamic pricing plans are fetched from the API
-        if not self.pricing_plans:
-            return None
-
         category = self._map_category_to_pricing_plan_category(vehicle['category'])
         pricing_plan_id = f'{category}_hour'
         if pricing_plan_id in self._pricing_plans_for_category(category):
@@ -270,11 +265,7 @@ class FleetsterProvider(BaseProvider):
 
         raise OSError(f'No default_pricing_plan mapping for category {category} ({self.system_id})')
 
-    def _pricing_plan_ids(self, vehicle: dict) -> list[str] | None:
-        # TODO: Temporary workaround until dynamic pricing plans are fetched from the API
-        if not self.pricing_plans:
-            return None
-
+    def _pricing_plan_ids(self, vehicle: dict) -> list[str]:
         category = self._map_category_to_pricing_plan_category(vehicle['category'])
         existing_pricing_plan_ids = self._pricing_plans_for_category(category)
         if len(existing_pricing_plan_ids) > 0:
@@ -351,15 +342,9 @@ class FleetsterProvider(BaseProvider):
             'model': normalized_model,
             'wheel_count': 4,
             'return_constraint': self.DEFAULT_VEHICLE_RETURN_CONSTRAINT,
+            # 'default_pricing_plan_id': self._default_pricing_plan_id(fleetster_vehicle),
+            # 'pricing_plan_ids': self._pricing_plan_ids(fleetster_vehicle),
         }
-
-        default_pricing_plan_id = self._default_pricing_plan_id(fleetster_vehicle)
-        if default_pricing_plan_id:
-            gbfs_vehicle_type['default_pricing_plan_id'] = default_pricing_plan_id
-
-        pricing_plan_ids = self._pricing_plan_ids(fleetster_vehicle)
-        if pricing_plan_ids:
-            gbfs_vehicle_type['pricing_plan_ids'] = pricing_plan_ids
 
         extended_properties = fleetster_vehicle.get('extended', {}).get('Properties', {})
 
@@ -394,13 +379,12 @@ class FleetsterProvider(BaseProvider):
             'bike_id': vehicle_id,
             'vehicle_type_id': vehicle_type_id,
             'station_id': fleetster_vehicle['locationId'],
+            # 'pricing_plan_id': self._default_pricing_plan_id(fleetster_vehicle),
             'is_reserved': False,  # Will possibly be updated later by self._update_booking_state
             'is_disabled': False,
             # TODO: pull this information from the Fleetster GBFS API as soon as available
             'current_range_meters': self.CURRENT_RANGE_METERS,
         }
-        if default_pricing_plan_id:
-            gbfs_vehicle['pricing_plan_id'] = default_pricing_plan_id
 
         if 'winterTires' in extended_properties and extended_properties['winterTires']:
             gbfs_vehicle['vehicle_equipment'] = ['winter_tires']

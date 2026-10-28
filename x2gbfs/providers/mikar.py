@@ -7,6 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 class MikarProvider(FleetsterProvider):
+
     # Vehicles in Monheim have different pricing, so we create a specific vehicle type for them
     MONHEIM_STATION_IDS = ['5cc7ffad44fb25000546b74a', '5cd53d13cdfe4d0005e88423']
 
@@ -30,13 +31,10 @@ class MikarProvider(FleetsterProvider):
     def __init__(self, feed_config: dict[str, Any], api):
         super().__init__(feed_config, api)
 
-    def _default_pricing_plan_id(self, vehicle: Dict) -> str | None:
+    def _default_pricing_plan_id(self, vehicle: Dict) -> str:
         """
         Maps mikar's vehicle categories to pricing plans (provided via config).
         """
-        # TODO: Temporary workaround until dynamic pricing plans are fetched from the API
-        if not self.pricing_plans:
-            return None
 
         if self._vehicle_type_id(vehicle) in self.VEHICLE_TYPE_TO_PRICING_PLAN_CATEGORY_MAPPING:
             category = self.VEHICLE_TYPE_TO_PRICING_PLAN_CATEGORY_MAPPING[self._vehicle_type_id(vehicle)]
@@ -49,7 +47,7 @@ class MikarProvider(FleetsterProvider):
 
         pricing_plan_id = f'{category}_hour'
 
-        if pricing_plan_id in [pricing_plan['plan_id'] for pricing_plan in self.pricing_plans]:
+        if pricing_plan_id in [pricing_plan['plan_id'] for pricing_plan in self.load_pricing_plans()]:
             return pricing_plan_id
 
         raise OSError(f'No default_pricing_plan mapping for category {category}')
