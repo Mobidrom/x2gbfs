@@ -265,7 +265,11 @@ class FleetsterProvider(BaseProvider):
 
         raise OSError(f'No default_pricing_plan mapping for category {category} ({self.system_id})')
 
-    def _pricing_plan_ids(self, vehicle: dict) -> list[str]:
+    def _pricing_plan_ids(self, vehicle: dict) -> list[str] | None:
+        #don't block the feed when not having pricing plan in the configuration
+        if not self.load_pricing_plans():
+            return None
+        
         category = self._map_category_to_pricing_plan_category(vehicle['category'])
         existing_pricing_plan_ids = self._pricing_plans_for_category(category)
         if len(existing_pricing_plan_ids) > 0:

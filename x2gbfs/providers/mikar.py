@@ -31,10 +31,13 @@ class MikarProvider(FleetsterProvider):
     def __init__(self, feed_config: dict[str, Any], api):
         super().__init__(feed_config, api)
 
-    def _default_pricing_plan_id(self, vehicle: Dict) -> str:
+    def _default_pricing_plan_id(self, vehicle: Dict) -> str | None:
         """
         Maps mikar's vehicle categories to pricing plans (provided via config).
         """
+        #don't block the feed when not having pricing plan in the configuration
+        if not self.load_pricing_plans():
+            return None
 
         if self._vehicle_type_id(vehicle) in self.VEHICLE_TYPE_TO_PRICING_PLAN_CATEGORY_MAPPING:
             category = self.VEHICLE_TYPE_TO_PRICING_PLAN_CATEGORY_MAPPING[self._vehicle_type_id(vehicle)]
@@ -50,7 +53,8 @@ class MikarProvider(FleetsterProvider):
         if pricing_plan_id in [pricing_plan['plan_id'] for pricing_plan in self.load_pricing_plans()]:
             return pricing_plan_id
 
-        raise OSError(f'No default_pricing_plan mapping for category {category}')
+        logger.warning(f'No default_pricing_plan mapping for category {category}')
+        return None
 
     def _vehicle_type_id(self, fleetster_vehicle: Dict[str, Any]):
         normalized_brand = self._normalize_brand(fleetster_vehicle['brand'])
