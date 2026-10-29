@@ -148,10 +148,10 @@ class CambioProvider(BaseProvider):
         """
         match self.partner:
             case None:
-                station_name = unidecode_with_german_umlauts(elem['name'].lower()).replace(' ', '-')
+                station_name = self._encode_name(elem['name'])
                 station_url = f"https://www.cambio-carsharing.de/stationen/station/{station_name}-{elem['id']}"
             case 'stadtteilauto':
-                station_city = unidecode_with_german_umlauts(city).lower().replace(' ', '-')
+                station_city = self._encode_name(city)
                 station_url = f"https://www.stadtteilauto.com/de/privat/stationen/{station_city}/#station_{elem['id']}"
             case _:
                 raise RuntimeError(f"Unsupported partner '{self.partner}'")
@@ -159,3 +159,23 @@ class CambioProvider(BaseProvider):
         return {
             'web': station_url,
         }
+
+    @staticmethod
+    def _encode_name(name: str) -> str:
+        """
+        Mapping for station and vehicle names
+
+        Station names must be all lowercase with all umlauts replaced (confirmed)
+        Spaces and invalid special characters need to be replaced with a hyphen (-) (confirmed)
+        Some characters will not be replaced but removed instead, like single quotes (observed)
+        """
+
+        def map_char(c: str) -> str:
+            invalid_chars = ["'"]
+            if c.isalnum():
+                return c
+            if c in invalid_chars:
+                return ''
+            return '-'
+
+        return ''.join(map_char(c) for c in unidecode_with_german_umlauts(name).lower())
