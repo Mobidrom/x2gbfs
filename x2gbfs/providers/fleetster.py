@@ -342,8 +342,8 @@ class FleetsterProvider(BaseProvider):
             'model': normalized_model,
             'wheel_count': 4,
             'return_constraint': self.DEFAULT_VEHICLE_RETURN_CONSTRAINT,
-            # 'default_pricing_plan_id': self._default_pricing_plan_id(fleetster_vehicle),
-            # 'pricing_plan_ids': self._pricing_plan_ids(fleetster_vehicle),
+            # 'default_pricing_plan_id': self._default_pricing_plan_id(fleetster_vehicle),  # TODO Implement pricing via API
+            # 'pricing_plan_ids': self._pricing_plan_ids(fleetster_vehicle),  # TODO Implement pricing via API
         }
 
         extended_properties = fleetster_vehicle.get('extended', {}).get('Properties', {})
@@ -379,7 +379,7 @@ class FleetsterProvider(BaseProvider):
             'bike_id': vehicle_id,
             'vehicle_type_id': vehicle_type_id,
             'station_id': fleetster_vehicle['locationId'],
-            # 'pricing_plan_id': self._default_pricing_plan_id(fleetster_vehicle),
+            # 'pricing_plan_id': self._default_pricing_plan_id(fleetster_vehicle),  # TODO Implement pricing via API
             'is_reserved': False,  # Will possibly be updated later by self._update_booking_state
             'is_disabled': False,
             # TODO: pull this information from the Fleetster GBFS API as soon as available
