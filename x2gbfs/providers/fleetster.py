@@ -379,7 +379,7 @@ class FleetsterProvider(BaseProvider):
             'bike_id': vehicle_id,
             'vehicle_type_id': vehicle_type_id,
             'station_id': fleetster_vehicle['locationId'],
-            # 'pricing_plan_id': self._default_pricing_plan_id(fleetster_vehicle),  # TODO Implement pricing via API
+            # 'pricing_plan_id': self._default_pricing_plan_id(fleetster_vehicle),  # TODO set up pricing via API
             'is_reserved': False,  # Will possibly be updated later by self._update_booking_state
             'is_disabled': False,
             # TODO: pull this information from the Fleetster GBFS API as soon as available
