@@ -1,0 +1,22 @@
+{
+    "feed_data": {
+        "system_information": {
+            "email": "info@mikar.de",
+            "feed_contact_email": "datenplattform@mobidrom.nrw",
+            "language": "de",
+            "license_id": "DL-DE-ZERO-2.0",
+            "attribution_organization_name": "mikar GmbH",
+            "attribution_url": "https://mikar.de/",
+            "name": "mikar",
+            "operator": "mikar GmbH",
+            "system_id": "mikar",
+            "timezone": "Europe/Berlin",
+            "url": "https://mikar.de/",
+            "opening_hours": "24/7"
+        }
+    },
+    "x2gbfs": {
+        "ttl": 86400,
+        "gbfs_version": 3
+    }
+}
